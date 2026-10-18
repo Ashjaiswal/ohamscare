@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ohams Care — Healthcare that reaches everyone</title>
 <meta name="description" content="Ohams Care is building a compassionate health platform: instant doctor consults, verified wellness providers near you, and free, private care for those who can't pay.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💚</text></svg>">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#0c1f1a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,8 +34,9 @@
   /* ---------- nav ---------- */
   header.nav{position:absolute;top:36px;left:0;right:0;z-index:20}
   .nav-inner{display:flex;justify-content:space-between;align-items:center}
-  .logo{font-family:'Fraunces',serif;font-weight:700;font-size:23px;color:#fff;letter-spacing:.3px}
-  .logo em{font-style:normal;color:var(--gold)}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo img.mark{width:38px;height:38px;border-radius:50%;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .logo img.word{height:34px;width:auto}
   .nav-links a{color:rgba(255,255,255,.82);text-decoration:none;font-size:14.5px;font-weight:500;margin-left:28px;transition:.2s}
   .nav-links a:hover{color:#fff}
   .nav-cta{border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:9px 22px !important}
@@ -150,7 +154,7 @@
 
 <header class="nav">
   <div class="wrap nav-inner">
-    <div class="logo">Ohams <em>Care</em></div>
+    <div class="logo"><img class="mark" src="logo-icon.png" alt="Ohams Care"><img class="word" src="wordmark-white.png" alt="ohamscare"></div>
     <nav class="nav-links">
       <a href="#pillars">Care</a>
       <a href="#mission">Mission</a>
@@ -303,7 +307,7 @@
     </div>
     <div class="foot-grid">
       <div>
-        <div class="flogo">Ohams <em>Care</em></div>
+        <div class="flogo" style="display:flex;align-items:center;gap:12px"><img src="logo-icon.png" alt="Ohams Care" style="width:40px;height:40px;border-radius:50%"><img src="wordmark-white.png" alt="ohamscare" style="height:36px;width:auto"></div>
         <p>Healing without borders.<br><a href="mailto:hello@ohamscare.com">hello@ohamscare.com</a></p>
       </div>
       <div>
