@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ohams Care — Healthcare that reaches everyone</title>
+<meta name="description" content="Ohams Care is building a compassionate health platform: instant doctor consults, verified wellness providers near you, and free, private care for those who can't pay.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💚</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0c1f1a; --pine:#123b30; --pine2:#0e2a23;
+    --gold:#d4a437; --gold-soft:#f5d98b;
+    --cream:#f7f3ea; --cream2:#efe8d8;
+    --sage:#9db8a8; --muted:#5c6b66; --line:#e3dcc9;
+    --white:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:'Fraunces',serif;line-height:1.12;font-weight:600}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+
+  /* ---------- crisis bar ---------- */
+  .crisis{background:#081512;color:var(--gold-soft);text-align:center;font-size:13px;font-weight:600;padding:9px 14px;letter-spacing:.2px}
+  .crisis a{color:var(--gold-soft);text-decoration:underline;text-underline-offset:2px}
+
+  /* ---------- nav ---------- */
+  header.nav{position:absolute;top:36px;left:0;right:0;z-index:20}
+  .nav-inner{display:flex;justify-content:space-between;align-items:center}
+  .logo{font-family:'Fraunces',serif;font-weight:700;font-size:23px;color:#fff;letter-spacing:.3px}
+  .logo em{font-style:normal;color:var(--gold)}
+  .nav-links a{color:rgba(255,255,255,.82);text-decoration:none;font-size:14.5px;font-weight:500;margin-left:28px;transition:.2s}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{border:1px solid rgba(255,255,255,.4);border-radius:999px;padding:9px 22px !important}
+  .nav-cta:hover{background:#fff;color:var(--ink) !important;border-color:#fff}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;color:#fff;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:url('assets/hero.jpg') center 38%/cover no-repeat;transform:scale(1.04)}
+  .hero-shade{position:absolute;inset:0;background:
+    linear-gradient(180deg, rgba(6,14,12,.62) 0%, rgba(6,14,12,.28) 38%, rgba(6,14,12,.34) 62%, rgba(6,14,12,.82) 100%),
+    linear-gradient(100deg, rgba(6,14,12,.55) 0%, rgba(6,14,12,0) 60%)}
+  .hero-content{position:relative;z-index:2;padding:120px 0 90px;max-width:1160px;margin:0 auto;padding-left:28px;padding-right:28px;width:100%}
+  .kicker{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;letter-spacing:2.5px;color:var(--gold-soft);margin-bottom:26px}
+  .kicker::before{content:"";width:34px;height:1.5px;background:var(--gold);display:inline-block}
+  .hero h1{font-size:clamp(46px,7.5vw,96px);max-width:840px;font-weight:600;letter-spacing:-1px}
+  .hero h1 em{font-style:italic;color:var(--gold);font-weight:500}
+  .hero p.lead{font-size:clamp(16px,2vw,20px);color:rgba(255,255,255,.82);max-width:600px;margin:26px 0 38px;font-weight:400}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:16px;padding:16px 36px;border-radius:999px;transition:.25s}
+  .btn-gold{background:var(--gold);color:#201503}
+  .btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px);box-shadow:0 14px 34px rgba(212,164,55,.35)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.45);color:#fff}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .hero-stats{position:relative;z-index:2;display:flex;gap:0;margin-top:70px;border-top:1px solid rgba(255,255,255,.22);max-width:760px}
+  .hero-stats div{padding:20px 34px 0 0;margin-right:34px}
+  .hero-stats div+div{border-left:1px solid rgba(255,255,255,.22);padding-left:34px}
+  .hero-stats b{display:block;font-family:'Fraunces',serif;font-size:26px;color:#fff}
+  .hero-stats span{font-size:13px;color:rgba(255,255,255,.66);letter-spacing:.4px}
+  .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.55);font-size:12px;letter-spacing:2px;animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+  /* ---------- ticker ---------- */
+  .ticker{background:var(--ink);color:var(--gold-soft);overflow:hidden;white-space:nowrap;padding:15px 0;border-top:1px solid rgba(212,164,55,.25)}
+  .ticker-track{display:inline-block;animation:tick 30s linear infinite;font-family:'Fraunces',serif;font-size:17px;letter-spacing:3px}
+  .ticker-track span{margin:0 26px}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- sections ---------- */
+  section{padding:110px 0}
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:2.5px;color:#8a6d1f;margin-bottom:18px}
+  .sec-title{font-size:clamp(32px,4.5vw,52px);letter-spacing:-.5px;max-width:640px}
+  .sec-sub{color:var(--muted);font-size:17.5px;max-width:620px;margin-top:16px}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* pillars */
+  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;margin-top:60px}
+  .pillar{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:40px 34px;position:relative;overflow:hidden;transition:.3s}
+  .pillar:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(12,31,26,.10)}
+  .pillar .num{font-family:'Fraunces',serif;font-size:15px;color:var(--gold);font-weight:700;letter-spacing:2px}
+  .pillar h3{font-size:25px;margin:16px 0 12px}
+  .pillar p{color:var(--muted);font-size:15.5px}
+  .pillar::after{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+  /* mission */
+  .mission{background:var(--pine2);color:#eef2ea;border-radius:34px;margin:0 18px;padding:0;overflow:hidden}
+  .mission-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:0;align-items:stretch}
+  .mission-img{min-height:520px;background:url('assets/hands.jpg') center/cover no-repeat}
+  .mission-copy{padding:84px 70px}
+  .mission-copy .eyebrow{color:var(--gold-soft)}
+  .mission-copy h2{font-size:clamp(30px,3.6vw,44px);color:#fff;margin-bottom:26px}
+  .mission-copy p{color:#c9d4c9;font-size:17px;margin-bottom:18px}
+  .mission-copy p strong{color:var(--gold-soft)}
+  .pull{border-left:3px solid var(--gold);padding-left:22px;margin:30px 0;font-family:'Fraunces',serif;font-style:italic;font-size:21px;color:#fff}
+
+  /* steps */
+  .steps-sec{background:var(--cream2)}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;margin-top:56px;counter-reset:step}
+  .step{background:var(--ink);color:#f2eee2;border-radius:20px;padding:36px 30px;position:relative}
+  .step .snum{font-family:'Fraunces',serif;font-size:44px;color:var(--gold);font-weight:700;opacity:.9}
+  .step h3{color:#fff;font-size:21px;margin:14px 0 10px}
+  .step p{color:#b9c4b6;font-size:15px}
+
+  /* waitlist */
+  .wait-card{background:var(--white);border:1px solid var(--line);border-radius:26px;max-width:600px;margin:60px auto 0;padding:52px 48px;box-shadow:0 30px 70px rgba(12,31,26,.10);text-align:left}
+  .wait-card h2{font-size:30px;margin-bottom:10px;text-align:center}
+  .wait-card>p{color:var(--muted);text-align:center;margin-bottom:8px;font-size:15.5px}
+  label{display:block;font-size:13.5px;font-weight:700;margin:18px 0 7px;letter-spacing:.3px}
+  input,select{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:13px;font-size:15.5px;font-family:inherit;background:#fbfaf5;color:var(--ink);transition:.2s}
+  input:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,164,55,.15)}
+  button[type=submit]{width:100%;margin-top:26px;background:var(--ink);color:#fff;border:none;padding:16px;border-radius:13px;font-size:16.5px;font-weight:700;cursor:pointer;transition:.25s;letter-spacing:.3px}
+  button[type=submit]:hover{background:var(--pine);transform:translateY(-2px)}
+  .fine{font-size:12.5px;color:var(--muted);margin-top:14px;text-align:center}
+  #thanks{display:none;text-align:center;padding:30px 0}
+  #thanks .big{font-size:52px;margin-bottom:14px}
+
+  /* footer */
+  footer{background:#081512;color:#a9b8ae;padding:70px 0 46px}
+  .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px;margin-bottom:44px}
+  .foot-grid h4{color:#fff;font-size:15px;margin-bottom:16px;letter-spacing:.5px}
+  .flogo{font-family:'Fraunces',serif;font-size:24px;color:#fff;font-weight:700;margin-bottom:14px}
+  .flogo em{font-style:normal;color:var(--gold)}
+  footer p,footer a{font-size:14px;color:#8fa096;text-decoration:none}
+  footer a:hover{color:#fff}
+  .foot-crisis{border:1px solid rgba(212,164,55,.4);border-radius:16px;padding:20px 24px;margin-bottom:36px;background:rgba(212,164,55,.06)}
+  .foot-crisis b{color:var(--gold-soft);font-size:14.5px}
+  .foot-crisis p{font-size:12.5px;margin-top:8px;line-height:1.7}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.10);padding-top:26px;text-align:center;font-size:12.5px;color:#6d7f74}
+
+  @media(max-width:860px){
+    .mission-grid{grid-template-columns:1fr}
+    .mission-img{min-height:320px}
+    .mission-copy{padding:52px 34px}
+    .foot-grid{grid-template-columns:1fr}
+    .hero-stats{flex-wrap:wrap;gap:10px}
+    .hero-stats div{margin-right:18px;padding-right:18px}
+    .nav-links a:not(.nav-cta){display:none}
+    section{padding:80px 0}
+  }
+</style>
+</head>
+<body>
+
+<div class="crisis">🆘 In crisis? &nbsp;Tele-MANAS: <a href="tel:14416">14416</a> &nbsp;·&nbsp; Emergency: <a href="tel:112">112</a> &nbsp;·&nbsp; Vandrevala Foundation: <a href="tel:18008914416">1-800-891-4416</a> (24×7)</div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo">Ohams <em>Care</em></div>
+    <nav class="nav-links">
+      <a href="#pillars">Care</a>
+      <a href="#mission">Mission</a>
+      <a href="#how">How it works</a>
+      <a href="#waitlist" class="nav-cta">Join waitlist</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <div class="kicker">LAUNCHING SOON · INDIA FIRST, WORLD NEXT</div>
+    <h1>Healthcare that <em>reaches</em> everyone.</h1>
+    <p class="lead">Instant doctor consults. Verified healers near you. And completely free, private care for those who can't pay — funded by those who can.</p>
+    <div class="btn-row">
+      <a class="btn btn-gold" href="#waitlist">Join the waitlist</a>
+      <a class="btn btn-ghost" href="#mission">Our mission</a>
+    </div>
+    <div class="hero-stats">
+      <div><b>15 min</b><span>consult SLA</span></div>
+      <div><b>Shield</b><span>identity privacy</span></div>
+      <div><b>Free</b><span>care for those in need</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>TELEMEDICINE</span>✦<span>MENTAL HEALTH</span>✦<span>IDENTITY SHIELD</span>✦<span>FREE CARE</span>✦<span>VERIFIED HEALERS</span>✦<span>HEALING WITHOUT BORDERS</span>✦
+    <span>TELEMEDICINE</span>✦<span>MENTAL HEALTH</span>✦<span>IDENTITY SHIELD</span>✦<span>FREE CARE</span>✦<span>VERIFIED HEALERS</span>✦<span>HEALING WITHOUT BORDERS</span>✦
+  </div>
+</div>
+
+<section id="pillars">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">WHAT WE'RE BUILDING</div>
+      <h2 class="sec-title">One platform, three doors to care.</h2>
+      <p class="sec-sub">Whatever you need — a doctor right now, a trusted healer nearby, or a safe space for stigmatised conditions.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="num">01</div>
+        <h3>Care near you</h3>
+        <p>A hyper-local network of verified clinics, doctors and wellness providers — rated, transparent, bookable. No more guessing who to trust.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="num">02</div>
+        <h3>Doctor in 15 minutes</h3>
+        <p>A digital general clinic with a sub-15-minute consult SLA. Real doctors, video consults, prescriptions — from wherever you are.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="num">03</div>
+        <h3>Private by design</h3>
+        <p>Our Identity Shield keeps you anonymous everywhere except the doctor's private clinical layer — built for HIV, LGBTQ+ and mental-health care without stigma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="mission reveal" id="mission">
+    <div class="mission-grid">
+      <div class="mission-img"></div>
+      <div class="mission-copy">
+        <div class="eyebrow">WHY OHAMS EXISTS</div>
+        <h2>One night changed everything.</h2>
+        <p>During his master's in the UK, our founder watched his 27-year-old neighbour — living with HIV — faint alone in his room. The emergency response took <strong>3–4 hours</strong>. Stigma had isolated him long before that night.</p>
+        <div class="pull">"What if care had reached him first?"</div>
+        <p>Ohams Care is the answer we're building — a system where no one suffers alone because of stigma, distance, or money. <strong>Premium wellness funds free care.</strong> Privacy is architecture, not a feature.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="steps-sec" id="how">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">HOW IT WORKS</div>
+      <h2 class="sec-title">Care in three steps.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="snum">1</div>
+        <h3>Tell us what you need</h3>
+        <p>Symptoms, language, budget — including zero. No one is turned away for inability to pay.</p>
+      </div>
+      <div class="step reveal">
+        <div class="snum">2</div>
+        <h3>Meet your doctor</h3>
+        <p>Video consult within 15 minutes with a verified doctor. Private by design, from anywhere.</p>
+      </div>
+      <div class="step reveal">
+        <div class="snum">3</div>
+        <h3>Heal, or help heal</h3>
+        <p>Get your prescription and follow-ups — or fund someone else's care through the impact pool.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="waitlist" style="padding-top:40px">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <div class="eyebrow">EARLY ACCESS</div>
+      <h2 class="sec-title" style="margin:0 auto">Be first through the door.</h2>
+      <p class="sec-sub" style="margin-left:auto;margin-right:auto">Patients, doctors and wellness providers — all welcome. We'll reach out as we open city by city.</p>
+    </div>
+    <div class="wait-card reveal">
+      <div id="formWrap">
+        <!-- TO ACTIVATE: create a free form at formspree.io, then replace YOUR_FORM_ID below -->
+        <form id="waitlistForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" required placeholder="Your name">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="you@example.com">
+          <label for="phone">Phone (optional)</label>
+          <input id="phone" name="phone" type="tel" placeholder="+91 …">
+          <label for="city">City</label>
+          <input id="city" name="city" type="text" required placeholder="e.g. Prayagraj">
+          <label for="role">I am joining as a</label>
+          <select id="role" name="role" required>
+            <option value="patient">Patient — I need care</option>
+            <option value="doctor">Doctor — I want to consult</option>
+            <option value="provider">Wellness provider — list my practice</option>
+            <option value="supporter">Supporter — I believe in the mission</option>
+          </select>
+          <button type="submit">Notify me at launch</button>
+          <p class="fine">No spam, ever. One email when we launch in your city.</p>
+        </form>
+      </div>
+      <div id="thanks">
+        <div class="big">💚</div>
+        <h2>You're on the list!</h2>
+        <p style="color:var(--muted)">We'll write to you the day Ohams Care opens in your city.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-crisis">
+      <b>🆘 In crisis? You are not alone.</b>
+      <p>Tele-MANAS: <a href="tel:14416" style="color:var(--gold-soft)">14416</a> · Emergency: <a href="tel:112" style="color:var(--gold-soft)">112</a> · Vandrevala Foundation: <a href="tel:18008914416" style="color:var(--gold-soft)">1-800-891-4416</a> (24×7)<br>
+      Ohams Care provides general wellness information and telemedicine facilitation. It is not a substitute for emergency medical care. If you are in immediate danger, call 112.</p>
+    </div>
+    <div class="foot-grid">
+      <div>
+        <div class="flogo">Ohams <em>Care</em></div>
+        <p>Healing without borders.<br><a href="mailto:hello@ohamscare.com">hello@ohamscare.com</a></p>
+      </div>
+      <div>
+        <h4>EXPLORE</h4>
+        <p><a href="#pillars">Our care</a><br><a href="#mission">Mission</a><br><a href="#how">How it works</a><br><a href="#waitlist">Waitlist</a></p>
+      </div>
+      <div>
+        <h4>COMING SOON</h4>
+        <p>Digital clinic<br>Healer network<br>Himalayan sanctuary<br>Impact fund</p>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Ohams Care · All rights reserved · Made with care in India</div>
+  </div>
+</footer>
+
+<script>
+// reveal on scroll
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), {threshold: .12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// waitlist form
+document.getElementById('waitlistForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form = e.target;
+  if (form.action.includes('YOUR_FORM_ID')) {
+    document.getElementById('formWrap').style.display='none';
+    document.getElementById('thanks').style.display='block';
+    return;
+  }
+  const data = new FormData(form);
+  const res = await fetch(form.action, {method:'POST', body:data, headers:{'Accept':'application/json'}});
+  if (res.ok) {
+    document.getElementById('formWrap').style.display='none';
+    document.getElementById('thanks').style.display='block';
+  } else { alert('Something went wrong — please try again.'); }
+});
+</script>
+</body>
+</html>
